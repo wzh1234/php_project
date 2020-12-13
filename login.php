@@ -2,12 +2,11 @@
 header("Content-type:text/html; charset=utf8");
 include 'connect_sql.php';
 
-$sql=$_GET['SQL'];
-//用户ID  密码  分组  启用  用户名称  关联设备 
-file_put_contents("./Result1.txt",222);
 //$sql = "select ID,用户ID,分组,启用,关联设备 from TT003_设备数据采集管理_用户信息 where 密码='123456' and 用户名称='test2'";
+$sql=$_POST['SQL'];
 $sql=(iconv('utf-8','GBK',$sql));
 
+file_put_contents($filename, $sql . "\r\n", FILE_APPEND|LOCK_EX);
 //执行sql语句
 $stmt = sqlsrv_query($conn, $sql, array(), array("Scrollable" => SQLSRV_CURSOR_KEYSET));
 

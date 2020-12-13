@@ -1,6 +1,6 @@
 
 <?php
-
+$filename="./log.log";
 $serverName = "192.168.0.106";//服务器地址
 
 $uid = "sa";//资料库用户名
@@ -15,11 +15,11 @@ $conn = sqlsrv_connect($serverName,$connectionInfo);
 
 if($conn == true)
 {
-    echo "connect success!<br />";
+    file_put_contents($filename, "connect success!\r\n", FILE_APPEND|LOCK_EX);
 }
 else
 {
-    echo "Connect error!<br />";
+    file_put_contents($filename, "Connect error!\r\n", FILE_APPEND|LOCK_EX);
     die(print_r(sqlsrv_errors(),true));
 }
 
